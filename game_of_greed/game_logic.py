@@ -3,11 +3,14 @@ from random import randint
 from typing import Tuple
 
 class GameLogic:
-    
+    """"Handle calculating score for dice roll"""
     @staticmethod
     def roll_dice(num):
-        #output tuple with random value between i and 6
-
+        """this method take an integer represent the tuple length and give a tuple with 
+        integer elements between 1 and 6
+        input: is an integer between 1 and 6 which represent the length of the tuple
+        output: tuple with random value element between 1 and 6"""
+        
         roll_dice_data=[]
 
         for i in range(num):
@@ -18,6 +21,10 @@ class GameLogic:
 
     @staticmethod
     def calculate_score(dice_results):
+        """A method to calculate the score for the dice , the output is an integer representing the roll’s 
+        score according to rules of game.
+        Input: tuple of integers that represent a dice roll."""
+        
         ctr = Counter(dice_results)
         ctr = list(ctr.items())
         ctr.sort(key=lambda x: (-x[1], x[0]))
@@ -28,7 +35,7 @@ class GameLogic:
             score = 1500
         else: 
             for i in ctr: 
-                print(i[0])
+                # print(i[0])
                 if i[1] == 3 and i[0] != 1:
                     score += i[0] * 100
                 if i[1] == 4:
@@ -57,7 +64,9 @@ class GameLogic:
         return score
 
 
-
+if __name__ == "__main__":
+    print("The score is:",GameLogic.calculate_score(GameLogic.roll_dice(5)))
+    
 
 
 

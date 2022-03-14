@@ -10,6 +10,8 @@ class GameLogic:
     @staticmethod
     def calculate_score(dice):
         pass
+    
+        
 
 
 

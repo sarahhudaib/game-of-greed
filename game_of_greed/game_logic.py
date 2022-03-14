@@ -1,13 +1,26 @@
 from collections import Counter
 from random import randint
+from typing import Tuple
 
 class GameLogic:
     @staticmethod
     def roll_dice(num):
-        pass 
+        #your code go here 
+        #output tuple with ranom value between i and 6
+
+        roll_dice_data=[]
+
+        for i in range(num):
+            roll_dice_data+=[randint(1, 6)]
+
+        return tuple(roll_dice_data)
+
+        
+       
 
   
     @staticmethod
+
     def calculate_score(dice_results):
         ctr = Counter(dice_results)
         ctr = list(ctr.items())
@@ -47,8 +60,8 @@ class GameLogic:
                     score += 1500
         return score
 
-if __name__ == "__main__":
-    print(GameLogic.calculate_score((5,)))
+
+
 
 
 

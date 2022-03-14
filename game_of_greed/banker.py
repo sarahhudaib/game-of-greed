@@ -16,4 +16,3 @@ class Banker():
         self.shelved = 0
         return self.shelved
 
-#Hello

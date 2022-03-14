@@ -6,7 +6,7 @@ class GameLogic:
     @staticmethod
     def roll_dice(num):
         #your code go here 
-        #output tuple with ranom value between i and 6
+        #output tuple with random value between i and 6
 
         roll_dice_data=[]
 

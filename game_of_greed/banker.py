@@ -9,8 +9,9 @@ class Banker():
         return self.shelved
 
     def bank(self):
-        pass
-        
+        self.balance += self.shelved
+        self.clear_shelf()
+
     def clear_shelf(self):
         self.shelved = 0
         return self.shelved

@@ -15,12 +15,8 @@ class GameLogic:
 
         return tuple(roll_dice_data)
 
-        
-       
 
-  
     @staticmethod
-
     def calculate_score(dice_results):
         ctr = Counter(dice_results)
         ctr = list(ctr.items())
@@ -59,6 +55,7 @@ class GameLogic:
                 if count == 3:
                     score += 1500
         return score
+
 
 
 

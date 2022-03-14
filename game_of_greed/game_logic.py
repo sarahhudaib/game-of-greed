@@ -3,9 +3,9 @@ from random import randint
 from typing import Tuple
 
 class GameLogic:
+    
     @staticmethod
     def roll_dice(num):
-        #your code go here 
         #output tuple with random value between i and 6
 
         roll_dice_data=[]
@@ -55,7 +55,6 @@ class GameLogic:
                 if count == 3:
                     score += 1500
         return score
-
 
 
 

@@ -44,7 +44,7 @@ class Game:
                     remaining -= len(user_input)
                     unbanked = GameLogic().calculate_score(tuple(user_input)) 
                     if rolled!=0 :
-                        unbanked +=rolled
+                        unbanked +=rolled   
                         rolled=0
             
                     # remaining= 6-len(decision)

@@ -1,50 +1,74 @@
+from game_of_greed.game_logic import GameLogic
+from game_of_greed.banker import Banker
+from collections import Counter
 
+class Game:
+    def __init__(self, roller = None):
+        self.roller = roller
+        self.banker=Banker()
+        self.game_logic=GameLogic()
+        # self.points=points
+        # python -m game_of_greed.game
+        
 
-    def bank_first_for_two_rounds(self, roller= None, bank=0, shelf = ):
-        print('Welcome to Game of Greed')
-        wanna_play = input('Wanna play? ')
+    def quit(score):
+        print(f"Total score is {score} points")
+        print(f"Thanks for playing. You earned {score} points")
+        
+        
+    def play(self):
+        round=0
+        unbanked=0
+        rolled=0
+        print("Welcome to Game of Greed")
+        wanna_play = input("Wanna play? ")
         if wanna_play == "n":
             print("OK. Maybe another time")
-        else:
-            print("Starting round 1")
-            print("Rolling 6 dice...")
-            rolled_dice = self.roller(6)
-            nums = []
-            for i in rolled_dice:
-                nums.append(str(i))
-            print(','.join(nums))
-            decision = input("Enter dice to keep (no spaces), or (q)uit: ")
-            if decision != 'q':
-                print(f"You have {shelf} unbanked points and 2 dice remaining")
-                decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
-                if decision2 == 'b':
-                    print(f'You banked {bank} points in round 2')
-                elif decision2 == 'r':
-                    print(f"Total score is {bank} points")
-                    print("Starting round 3")
-                    print("Rolling 6 dice...")
-                    rolled_dice = self.roller(6)
-                    nums = []
-                    for i in rolled_dice:
-                        nums.append(str(i))
-                    print(','.join(nums))
-                    decision3 = input("Enter dice to keep (no spaces), or (q)uit: ")
-                    if decision3 == 'q':
-                        print(f"You have {shelf} unbanked points and 1 dice remaining")
-                        decision4 = input('(r)oll again, (b)ank your points or (q)uit b')
-                        if decision4 == 'r':
-                            print(f'You banked {shelf} points in round 2')
-                            print(f"Total score is {bank} points")
-                            print(f'Thanks for playing. You earned {shelf} points')
-
+        elif wanna_play =="y":
+            while True:
+                round=round+1
+                print(f"Starting round {round}")
+                print("Rolling 6 dice...")
+                rolled_dice = self.roller(6)
+                nums = []
                 for i in rolled_dice:
                     nums.append(str(i))
-
                 print(','.join(nums))
-                decision2 = input("Enter dice to keep (no spaces), or (q)uit: ")
-                if decision2=="q":
-                    print("Total score is 50 points")
-                    print("Thanks for playing. You earned 50 points")
-    
-
-
+                decision = input("Enter dice to keep (no spaces), or (q)uit: ")
+                if decision== "q":
+                    print("Thanks for playing. You earned 0 points")
+                    break
+                else :
+         
+                    remaining= 6-len(decision)
+                    str_tuple = tuple(decision)
+                    int_list=[]
+                    for i in str_tuple:
+                        int_list.append(int(str_tuple[i]))
+                    int_tuple = tuple(int_list)
+                    score = Banker.shelf(GameLogic.calculate_score(int_tuple))
+                    # print(f"You have {score} unbanked points and {remaining} dice remaining")
+                    
+                    # if decision != 'q' and decision != 'b'and decision != 'r':
+                    #     user_input = [int(i) for i in decision]
+                    #     print(tuple(decision))
+                    #     unbanked= self.banker.shelf(GameLogic.calculate_score(tuple(decision)))
+                    #     if rolled!=0 :
+                    #             unbanked +=rolled
+                    #             rolled=0
+                    # remaining= 6-len(decision)
+                    print(f"You have {score} unbanked points and {remaining} dice remaining")
+                    decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
+                    if decision2 == 'q':
+                        Game.quit(self.banker.bank)
+                        break
+                    elif decision2 == 'b':
+                        print(f'You banked {self.banker.bank} points in round {round}')
+                    elif decision2 == 'r':
+                        print(f"Total score is {self.banker.bank} points")
+                    
+                
+            
+if __name__ == "__main__":
+    game = Game( GameLogic.roll_dice )
+    game.play()

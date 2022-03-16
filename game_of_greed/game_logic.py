@@ -27,7 +27,7 @@ class GameLogic:
         
         ctr = Counter(dice_results)
         ctr = list(ctr.items())
-        print(ctr)
+        # print(ctr)
         score = 0
         if len(ctr) == 6 :
             score = 1500

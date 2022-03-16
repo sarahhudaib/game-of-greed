@@ -20,6 +20,7 @@ class Game:
         round=0
         unbanked=0
         rolled=0
+        remaining = 6
         print("Welcome to Game of Greed")
         wanna_play = input("Wanna play? ")
         if wanna_play == "n":
@@ -38,26 +39,16 @@ class Game:
                 if decision== "q":
                     print("Thanks for playing. You earned 0 points")
                     break
-                else :
-         
-                    remaining= 6-len(decision)
-                    str_tuple = tuple(decision)
-                    int_list=[]
-                    for i in str_tuple:
-                        int_list.append(int(str_tuple[i]))
-                    int_tuple = tuple(int_list)
-                    score = Banker.shelf(GameLogic.calculate_score(int_tuple))
-                    # print(f"You have {score} unbanked points and {remaining} dice remaining")
-                    
-                    # if decision != 'q' and decision != 'b'and decision != 'r':
-                    #     user_input = [int(i) for i in decision]
-                    #     print(tuple(decision))
-                    #     unbanked= self.banker.shelf(GameLogic.calculate_score(tuple(decision)))
-                    #     if rolled!=0 :
-                    #             unbanked +=rolled
-                    #             rolled=0
+                elif decision != 'q' and decision != 'b'and decision != 'r':
+                    user_input = [int(i) for i in decision]
+                    remaining -= len(user_input)
+                    unbanked = GameLogic().calculate_score(tuple(user_input)) 
+                    if rolled!=0 :
+                        unbanked +=rolled
+                        rolled=0
+            
                     # remaining= 6-len(decision)
-                    print(f"You have {score} unbanked points and {remaining} dice remaining")
+                    print(f"You have {unbanked} unbanked points and {remaining} dice remaining")
                     decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
                     if decision2 == 'q':
                         Game.quit(self.banker.bank)

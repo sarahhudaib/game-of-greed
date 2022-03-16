@@ -1,17 +1,14 @@
 from game_of_greed.game_logic import GameLogic
 from game_of_greed.banker import Banker
-from collections import Counter
 
 class Game:
     def __init__(self, roller = None):
         self.roller = roller
         self.banker=Banker()
         self.game_logic=GameLogic()
-        # self.points=points
-        # python -m game_of_greed.game
-        
 
     def quit(score):
+        """a function that will be called when we want to quit or finish the game"""
         if score ==0:
             print(f"Thanks for playing. You earned {score} points")
         else:   
@@ -20,6 +17,7 @@ class Game:
         
         
     def play(self):
+        """this func will make the game  go through the test files"""
         print("Welcome to Game of Greed")
         wanna_play = input("Wanna play? ")
         if wanna_play == "n":
@@ -34,7 +32,6 @@ class Game:
             print(f"Starting round {round}")
            
             while play:
-                
                 print("Rolling 6 dice...")
                 rolled_dice = self.roller(6)
                 nums = []
@@ -54,7 +51,6 @@ class Game:
                       unbanked +=rolled   
                     rolled=0
                     print(f"You have {unbanked} unbanked points and {remaining} dice remaining")
-                    # round=round+1
                     decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
                     if decision2 == 'q':
                         Game.quit(score)
@@ -79,10 +75,7 @@ class Game:
                             score+=unbanked
                             remaining =6
                             print(f'Starting round {round}')
-                        
-                    
-                
-            
+                             
 if __name__ == "__main__":
     game = Game( GameLogic.roll_dice )
     game.play()

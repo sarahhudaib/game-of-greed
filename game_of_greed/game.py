@@ -9,10 +9,10 @@ class Game:
         self.game_logic=GameLogic()
         # python -m game_of_greed.game
         
-    @staticmethod
-    def quit(score):
-        print(f"Total score is {score} points")
-        print(f"Thanks for playing. You earned {score} points")
+    # @staticmethod
+    # def quit(score):
+    #     print(f"Total score is {score} points")
+    #     print(f"Thanks for playing. You earned {score} points")
         
         
     def play(self):
@@ -36,6 +36,7 @@ class Game:
                     nums.append(str(i))
                 print(','.join(nums))
                 decision = input("Enter dice to keep (no spaces), or (q)uit: ")
+                # print('round', round)
                 if decision == "q" and round <= 1:
                     print(f"Thanks for playing. You earned {score} points")
                     break
@@ -48,8 +49,9 @@ class Game:
                         rolled=0
                     print(f"You have {unbanked} unbanked points and {remaining} dice remaining")
                     decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
-                    if decision2 == 'q' and round > 1:
-                        Game.quit(score)
+                    if decision2 == 'q':
+                        print(f"Total score is {score} points")
+                        print(f"Thanks for playing. You earned {score} points")
                         break
                     elif decision2 == 'b':
                         score += unbanked

@@ -92,4 +92,4 @@ class Flo:
 
 if __name__ == "__main__":
     Flo.test("tests/flow/bank_one_roll_then_quit.sim.txt")
-    Flo.test("tests/flow/zilch.sim.txt")
+

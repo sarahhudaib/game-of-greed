@@ -1,5 +1,5 @@
 from tests.flow.flo import Flo
 
 
-def test_one_and_done():
+def test_zilch():
     Flo.test("tests/flow/zilch.sim.txt")

@@ -7,7 +7,6 @@ class Game:
         self.roller = roller
         self.banker=Banker()
         self.game_logic=GameLogic()
-        # self.points=points
         # python -m game_of_greed.game
         
 
@@ -55,7 +54,6 @@ class Game:
                       unbanked +=rolled   
                     rolled=0
                     print(f"You have {unbanked} unbanked points and {remaining} dice remaining")
-                    # round=round+1
                     decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
                     if decision2 == 'q':
                         Game.quit(score)

@@ -2,17 +2,23 @@ from game_of_greed.game_logic import GameLogic
 from game_of_greed.banker import Banker
 from collections import Counter
 
+# python -m game_of_greed.game
+
 class Game:
     def __init__(self, roller = None):
         self.roller = roller
         self.banker=Banker()
         self.game_logic=GameLogic()
-        # python -m game_of_greed.game
+
         
 
-    def quit(score) :
-        if score == 0:
+    def quit(score,cheater) :
+        if cheater:
+            print(f'Total score is {score} points')
+            print(f'Thanks for playing. You earned {score} points')
+        elif score == 0:
             print(f"Thanks for playing. You earned 0 points")
+
         else:
             print(f"Total score is {score} points")
             print(f"Thanks for playing. You earned {score} points")
@@ -30,16 +36,6 @@ class Game:
                     if i[1] > j[1]:
                         return True
         return False
-
-        # # method 2
-        # decision_list = [int(i) for i in decision]
-        # result = set(rolled_dice).issubset(decision_list)
-        # if GameLogic.calculate_score(rolled_dice) < GameLogic.calculate_score(tuple(decision_list)):
-        #     validation = False
-        # else:
-        #     validation = True
-        # return result and validation
-        
 
 
     def print_decision(rolled_dice):
@@ -62,15 +58,12 @@ class Game:
             remaining = 6
             play=True
             zilch = False
+            cheater = False
             print(f"Starting round {round}")
            
             while play:
                 print(f"Rolling {remaining} dice...")
                 rolled_dice = self.roller(remaining)
-                # nums = []
-                # for i in rolled_dice:
-                #     nums.append(str(i))
-                # print(','.join(nums))
                 Game.print_decision(rolled_dice)
 
                 if GameLogic().calculate_score(rolled_dice) == 0:
@@ -90,11 +83,12 @@ class Game:
                         print('Total score is 0 points')
                         print('Thanks for playing. You earned 0 points')
                         break
-                    Game.quit(score)
+                    Game.quit(score,cheater)
                     play=False
                     
                 elif decision != 'q' and decision != 'b'and decision != 'r':
                     if Game.validation(decision, rolled_dice):
+                        cheater = True
                         print('Cheater!!! Or possibly made a typo...')
                         Game.print_decision(rolled_dice)
                         decision = input("Enter dice to keep (no spaces), or (q)uit: ")
@@ -107,7 +101,7 @@ class Game:
                     print(f"You have {unbanked} unbanked points and {remaining} dice remaining")
                     decision2 = input('(r)oll again, (b)ank your points or (q)uit ')
                     if decision2 == 'q':
-                        Game.quit(score)
+                        Game.quit(score,cheater)
                         rolled=0
                         play=False
                     
@@ -137,5 +131,3 @@ class Game:
 if __name__ == "__main__":
     game = Game( GameLogic.roll_dice )
     game.play()
-
-

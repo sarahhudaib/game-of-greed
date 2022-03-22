@@ -25,12 +25,12 @@ class Game:
         for i in ctr_decision:
             for j in ctr_rolled_dice:
                 if i[0] not in keys_rolled_dic:
-                    return False
+                    return True
                 if i[0] == j[0]:
                     if i[1] > j[1]:
-                        return False
-        return True
-        
+                        return True
+        return False
+
         # # method 2
         # decision_list = [int(i) for i in decision]
         # result = set(rolled_dice).issubset(decision_list)
@@ -83,11 +83,6 @@ class Game:
                     remaining = 6
                     continue
                 decision = input("Enter dice to keep (no spaces), or (q)uit: ")
-
-                # if not Game.validation(decision, rolled_dice):
-                #     print('Cheater!!! Or possibly made a typo...')
-                #     Game.print_decision(rolled_dice)
-                #     decision = input("Enter dice to keep (no spaces), or (q)uit: ")
                 
                 if decision== "q":
                     rolled=0
@@ -99,6 +94,10 @@ class Game:
                     play=False
                     
                 elif decision != 'q' and decision != 'b'and decision != 'r':
+                    if Game.validation(decision, rolled_dice):
+                        print('Cheater!!! Or possibly made a typo...')
+                        Game.print_decision(rolled_dice)
+                        decision = input("Enter dice to keep (no spaces), or (q)uit: ")
                     user_input = [int(i) for i in decision]
                     remaining -= len(user_input)
                     unbanked = GameLogic().calculate_score(tuple(user_input)) 

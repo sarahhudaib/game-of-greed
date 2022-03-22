@@ -17,8 +17,21 @@ class Game:
             print(f"Total score is {score} points")
             print(f"Thanks for playing. You earned {score} points")
     
-    # def validation(decision, rolled_dice):
-        # # method 1
+    def validation(decision, rolled_dice):
+        decision_list = [int(i) for i in decision]
+        ctr_decision = list(Counter(decision_list).items())
+        ctr_rolled_dice = list(Counter(rolled_dice).items())
+        keys_rolled_dic = list(Counter(rolled_dice).keys())
+        for i in ctr_decision:
+            for j in ctr_rolled_dice:
+                if i[0] not in keys_rolled_dic:
+                    return False
+                if i[0] == j[0]:
+                    if i[1] > j[1]:
+                        return False
+        return True
+        
+        # # method 2
         # decision_list = [int(i) for i in decision]
         # result = set(rolled_dice).issubset(decision_list)
         # if GameLogic.calculate_score(rolled_dice) < GameLogic.calculate_score(tuple(decision_list)):
@@ -26,15 +39,6 @@ class Game:
         # else:
         #     validation = True
         # return result and validation
-
-        # # method 2
-        # decision_list = [int(i) for i in decision]
-        # rolled_list = list(rolled_dice)
-        # result = set(decision_list).issubset(rolled_list)
-
-        # # method 3
-        # ctr_decision = Counter(decision)
-        # ctr_rolled_dice = Counter(rolled_dice)
         
 
 
@@ -80,7 +84,7 @@ class Game:
                     continue
                 decision = input("Enter dice to keep (no spaces), or (q)uit: ")
 
-                # if Game.validation(decision, rolled_dice):
+                # if not Game.validation(decision, rolled_dice):
                 #     print('Cheater!!! Or possibly made a typo...')
                 #     Game.print_decision(rolled_dice)
                 #     decision = input("Enter dice to keep (no spaces), or (q)uit: ")

@@ -43,7 +43,7 @@ class Game:
         nums = []
         for i in rolled_dice:
             nums.append(str(i))
-        print(','.join(nums))
+        print('*** '+','.join(nums))
         
         
     def play(self):

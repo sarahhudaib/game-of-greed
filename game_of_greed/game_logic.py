@@ -46,6 +46,22 @@ class GameLogic:
         return score
 
 
+    # def get_scorers(self, ):
+    #     score = self.calculate_score(self.roll_dice())
+    #     return str(score)
+
+    @staticmethod
+    def get_scorers(user_input):
+        score_list = []
+        if GameLogic.calculate_score(user_input) == 0:
+            return tuple()
+        for i in user_input:
+            score = [i]
+            if GameLogic.calculate_score(tuple(score)) != 0:
+                score_list.append(i)
+        return tuple(score_list)
+
+
 if __name__ == "__main__":
     print("The score is:",GameLogic.calculate_score(GameLogic.roll_dice(5)))
     

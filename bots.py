@@ -56,8 +56,6 @@ class BaseBot(ABC):
 
             self.dice_remaining = int(re.sub("\D", "", dice_remaining_part))
 
-            # self.real_print(unbanked_points_part, dice_remaining_part)
-
         elif line.startswith("*** "):
 
             self.last_roll = [int(ch) for ch in line if ch.isdigit()]
@@ -87,8 +85,7 @@ class BaseBot(ABC):
     def _enter_dice(self):
         """simulate user entering which dice to keep.
         Defaults to all scoring dice"""
-        
-        
+
         roll = GameLogic.get_scorers(self.last_roll)
 
         roll_string = ""
@@ -136,7 +133,6 @@ class NervousNellie(BaseBot):
     """NervousNellie banks the first roll always"""
 
     def _roll_bank_or_quit(self):
-        # self.real_print('b')
         return "b"
 
 class YourBot(BaseBot):
@@ -154,4 +150,4 @@ class YourBot(BaseBot):
 if __name__ == "__main__":
     num_games = 100
     NervousNellie.play(num_games)
-    # YourBot.play(num_games)
+    YourBot.play(num_games)

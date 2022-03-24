@@ -50,6 +50,8 @@ class GameLogic:
     #     score = self.calculate_score(self.roll_dice())
     #     return str(score)
 
+
+    # not sure about it yet
     @staticmethod
     def get_scorers(user_input):
         score_list = []

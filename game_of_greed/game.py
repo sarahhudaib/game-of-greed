@@ -64,7 +64,7 @@ class Game:
             # print(f"Starting round {round}")
            
             while play:
-                if self.total_score > 1000 or self.round > 10:
+                if self.total_score > 10000 or self.round > 6:
                     self.quit(self.total_score, cheater)
                     play=False
 

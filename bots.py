@@ -56,6 +56,8 @@ class BaseBot(ABC):
 
             self.dice_remaining = int(re.sub("\D", "", dice_remaining_part))
 
+            self.real_print(unbanked_points_part, dice_remaining_part)
+
         elif line.startswith("*** "):
 
             self.last_roll = [int(ch) for ch in line if ch.isdigit()]
@@ -135,7 +137,7 @@ class NervousNellie(BaseBot):
     def _roll_bank_or_quit(self):
         return "b"
 
-class YourBot(BaseBot):
+class Smarty(BaseBot):
     def _roll_bank_or_quit(self):
         """your logic here"""
         return "b"
@@ -150,4 +152,4 @@ class YourBot(BaseBot):
 if __name__ == "__main__":
     num_games = 100
     NervousNellie.play(num_games)
-    YourBot.play(num_games)
+    Smarty.play(num_games)

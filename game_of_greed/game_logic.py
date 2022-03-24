@@ -58,16 +58,14 @@ class GameLogic:
         if GameLogic.calculate_score(user_input) == 0:
             return tuple()
         for i in user_input:
-            score = [i]
-            if GameLogic.calculate_score(tuple(score)) != 0:
-                score_list.append(i)
+            if GameLogic.calculate_score([i]) != 0:
+                score_list.append(GameLogic.calculate_score([i]))
         return tuple(score_list)
 
 
 if __name__ == "__main__":
-    print("The score is:",GameLogic.calculate_score(GameLogic.roll_dice(5)))
-    
-
-
+    # print("The score is:",GameLogic.calculate_score(GameLogic.roll_dice(5)))
+    print(GameLogic.get_scorers([1,1,1,2,3,4]))
+    print("The score is:",GameLogic.calculate_score([1,1,1,2,3,4]))
 
 

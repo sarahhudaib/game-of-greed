@@ -101,6 +101,7 @@ class Game:
                         # Game.print_decision(rolled_dice)
                         print('Enter dice to keep, or (q)uit:')
                         decision = input()
+                        
                     user_input = [int(i) for i in decision]
                     remaining -= len(user_input)
 

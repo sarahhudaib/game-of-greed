@@ -56,7 +56,7 @@ class BaseBot(ABC):
 
             self.dice_remaining = int(re.sub("\D", "", dice_remaining_part))
 
-            self.real_print(unbanked_points_part, dice_remaining_part)
+            # self.real_print(unbanked_points_part, dice_remaining_part)
 
         elif line.startswith("*** "):
 
@@ -133,19 +133,30 @@ class BaseBot(ABC):
 
 class NervousNellie(BaseBot):
     """NervousNellie banks the first roll always"""
-
     def _roll_bank_or_quit(self):
         return "b"
 
 class Smarty(BaseBot):
+    ''' A smart bot thet bank high scores and roll low scores'''
     def _roll_bank_or_quit(self):
         """your logic here"""
+        if self.dice_remaining == 0:
+            return 'b'
+        elif self.unbanked_points >= 800 and self.dice_remaining < 2:
+            return 'b'
+        elif self.unbanked_points <= 200:
+            return 'r'
         return "b"
+
 
     def _enter_dice(self):
         """simulate user entering which dice to keep.
         Defaults to all scoring dice"""
-
+        roll = GameLogic.smarty_get_scorers(self.last_roll)
+        roll_string = ""
+        for value in roll:
+            roll_string += str(value)
+        self.report("> " + roll_string)
         return super()._enter_dice()
 
 

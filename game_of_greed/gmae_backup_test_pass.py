@@ -92,9 +92,10 @@ class Game:
                         print('Cheater!!! Or possibly made a typo...')
                         Game.print_decision(rolled_dice)
                         decision = input("Enter dice to keep (no spaces), or (q)uit: ")
-                    user_input = [int(i) for i in decision]
-                    remaining -= len(user_input)
-                    unbanked = GameLogic().calculate_score(tuple(user_input)) 
+                    elif decision != 'q' and decision != 'b'and decision != 'r':
+                        user_input = [int(i) for i in decision]
+                        remaining -= len(user_input)
+                        unbanked = GameLogic().calculate_score(tuple(user_input)) 
                     if rolled!=0 :
                       unbanked +=rolled   
                     rolled=0

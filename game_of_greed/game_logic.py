@@ -46,12 +46,6 @@ class GameLogic:
         return score
 
 
-    # def get_scorers(self, ):
-    #     score = self.calculate_score(self.roll_dice())
-    #     return str(score)
-
-
-    # not sure about it yet
     @staticmethod
     def get_scorers(user_input):
         score_list = []
@@ -60,12 +54,32 @@ class GameLogic:
         for i in user_input:
             if GameLogic.calculate_score([i]) != 0:
                 score_list.append(GameLogic.calculate_score([i]))
-        return tuple(score_list)
+        return score_list
+    
+    @staticmethod
+    def smarty_get_scorers(user_input):
+        final_list = []
+        score= []
+        ctr_user_input = list(Counter(user_input).items())
+        for i in ctr_user_input:
+            if i[1] >=3:
+                for _ in range(i[1]):
+                    final_list.append(i[0])
+                continue
+            if i[0] == 1 or i[0] == 5:
+                for _ in range(i[1]):
+                    final_list.append(i[0])
+                continue
+        score.append(GameLogic.calculate_score(final_list))
+        return score
+      
+
 
 
 if __name__ == "__main__":
     # print("The score is:",GameLogic.calculate_score(GameLogic.roll_dice(5)))
     print(GameLogic.get_scorers([1,1,1,2,3,4]))
-    print("The score is:",GameLogic.calculate_score([1,1,1,2,3,4]))
+    print(GameLogic.smarty_get_scorers([1,1,1,2,3,4]))
+    # print("The score is:",GameLogic.calculate_score([1,1,1,2,3,4]))
 
 
